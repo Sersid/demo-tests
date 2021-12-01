@@ -10,21 +10,6 @@ use stdClass;
 class TestIconv extends TestCase
 {
     /**
-     * Типы данных, которые не нуждаются в конвертации
-     */
-    public function skippedDataProvider(): array
-    {
-        return [
-            [true, true],
-            [false, false],
-            [123456789, 123456789],
-            [123456789.123, 123456789.123],
-            [null, null],
-            [new stdClass(), new stdClass()],
-        ];
-    }
-
-    /**
      * Типы данных, которые будут конвертированы
      */
     public function dataProvider(): array
@@ -55,6 +40,21 @@ class TestIconv extends TestCase
                     'key' => '123',
                 ]
             ],
+        ];
+    }
+
+    /**
+     * Типы данных, которые не нуждаются в конвертации
+     */
+    public function skippedDataProvider(): array
+    {
+        return [
+            [true, true],
+            [false, false],
+            [123456789, 123456789],
+            [123456789.123, 123456789.123],
+            [null, null],
+            [new stdClass(), new stdClass()],
         ];
     }
 
