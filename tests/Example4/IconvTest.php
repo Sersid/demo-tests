@@ -12,55 +12,6 @@ class IconvTest extends TestCase
     private const BAD_CHARSET = 'Windowsz-1251';
 
     /**
-     * Типы данных, которые не нуждаются в конвертации
-     */
-    public function skippedDataProvider(): array
-    {
-        return [
-            [true, true],
-            [false, false],
-            [123456789, 123456789],
-            [123456789.123, 123456789.123],
-            [null, null],
-            [new stdClass(), new stdClass()],
-        ];
-    }
-
-    /**
-     * Типы данных, которые будут конвертированы
-     */
-    public function dataProvider(): array
-    {
-        return [
-            ['Тестовая строка', 'РўРµСЃС‚РѕРІР°СЏ СЃС‚СЂРѕРєР°'],
-            [
-                [
-                    0 => 'Юнит тест',
-                    1 => 'Тестовая строка',
-                    'Юнит тест' => [
-                        'key' => 'Тест',
-                        0 => '',
-                        1 => 123,
-                    ],
-                    2 => '!@#$%^&*()_+',
-                    'key' => '123',
-                ],
-                [
-                    0 => 'Р®РЅРёС‚ С‚РµСЃС‚',
-                    1 => 'РўРµСЃС‚РѕРІР°СЏ СЃС‚СЂРѕРєР°',
-                    'Р®РЅРёС‚ С‚РµСЃС‚' => [
-                        'key' => 'РўРµСЃС‚',
-                        0 => '',
-                        1 => 123,
-                    ],
-                    2 => '!@#$%^&*()_+',
-                    'key' => '123',
-                ]
-            ],
-        ];
-    }
-
-    /**
      * @dataProvider skippedDataProvider
      * @dataProvider dataProvider
      */
@@ -100,5 +51,54 @@ class IconvTest extends TestCase
         $result = Iconv::convert(Iconv::UTF8, self::BAD_CHARSET, $value);
 
         static::assertEquals($value, $result);
+    }
+
+    /**
+     * Типы данных, которые будут конвертированы
+     */
+    public function dataProvider(): array
+    {
+        return [
+            ['Тестовая строка', 'РўРµСЃС‚РѕРІР°СЏ СЃС‚СЂРѕРєР°'],
+            [
+                [
+                    0 => 'Юнит тест',
+                    1 => 'Тестовая строка',
+                    'Юнит тест' => [
+                        'key' => 'Тест',
+                        0 => '',
+                        1 => 123,
+                    ],
+                    2 => '!@#$%^&*()_+',
+                    'key' => '123',
+                ],
+                [
+                    0 => 'Р®РЅРёС‚ С‚РµСЃС‚',
+                    1 => 'РўРµСЃС‚РѕРІР°СЏ СЃС‚СЂРѕРєР°',
+                    'Р®РЅРёС‚ С‚РµСЃС‚' => [
+                        'key' => 'РўРµСЃС‚',
+                        0 => '',
+                        1 => 123,
+                    ],
+                    2 => '!@#$%^&*()_+',
+                    'key' => '123',
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * Типы данных, которые не нуждаются в конвертации
+     */
+    public function skippedDataProvider(): array
+    {
+        return [
+            [true, true],
+            [false, false],
+            [123456789, 123456789],
+            [123456789.123, 123456789.123],
+            [null, null],
+            [new stdClass(), new stdClass()],
+        ];
     }
 }
