@@ -5,7 +5,12 @@ namespace App\Example5;
 
 class Basket
 {
-    private array $items = [];
+    private array $items;
+
+    public function __construct(array $items = [])
+    {
+        $this->items = $items;
+    }
 
     public function getItems(): array
     {
