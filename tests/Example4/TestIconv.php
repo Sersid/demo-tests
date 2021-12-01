@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Example3;
+namespace Tests\Example4;
 
 use App\Example3\Iconv;
 use PHPUnit\Framework\TestCase;

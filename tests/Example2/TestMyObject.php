@@ -9,9 +9,9 @@ use PHPUnit\Framework\TestCase;
 class TestMyObject extends TestCase
 {
     /**
-     * @dataProvider dataProvider
+     * @dataProvider valueDataProvider
      */
-    public function testEquals($value): void
+    public function testGetValue($value): void
     {
         // Act
         $myObject = new MyObject($value);
@@ -20,7 +20,7 @@ class TestMyObject extends TestCase
         self::assertSame($value, $myObject->getValue());
     }
 
-    public function dataProvider(): array
+    public function valueDataProvider(): array
     {
         return [
             [1],
