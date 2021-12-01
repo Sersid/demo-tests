@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Tests\Example1;
 
-use App\Example1\MyObject;
+use App\Example1\ValueObject;
 use PHPUnit\Framework\TestCase;
 
-class TestMyObject extends TestCase
+class ValueObjectTest extends TestCase
 {
     public function testInteger(): void
     {
@@ -14,7 +14,7 @@ class TestMyObject extends TestCase
         $int = 1;
 
         // Act
-        $myObject = new MyObject($int);
+        $myObject = new ValueObject($int);
 
         // Assert
         self::assertSame(1, $myObject->getValue());
@@ -26,7 +26,7 @@ class TestMyObject extends TestCase
         $str = 'My string';
 
         // Act
-        $myObject = new MyObject($str);
+        $myObject = new ValueObject($str);
 
         // Assert
         self::assertSame('My string', $myObject->getValue());
@@ -38,7 +38,7 @@ class TestMyObject extends TestCase
         $float = 3.14;
 
         // Act
-        $myObject = new MyObject($float);
+        $myObject = new ValueObject($float);
 
         // Assert
         self::assertSame(3.14, $myObject->getValue());
@@ -50,7 +50,7 @@ class TestMyObject extends TestCase
         $array = ['test'];
 
         // Act
-        $myObject = new MyObject($array);
+        $myObject = new ValueObject($array);
 
         // Assert
         self::assertSame(['test'], $myObject->getValue());
@@ -62,7 +62,7 @@ class TestMyObject extends TestCase
         $bool = true;
 
         // Act
-        $myObject = new MyObject($bool);
+        $myObject = new ValueObject($bool);
 
         // Assert
         self::assertSame(true, $myObject->getValue());
@@ -74,7 +74,7 @@ class TestMyObject extends TestCase
         $bool = false;
 
         // Act
-        $myObject = new MyObject($bool);
+        $myObject = new ValueObject($bool);
 
         // Assert
         self::assertFalse($myObject->getValue());
@@ -86,7 +86,7 @@ class TestMyObject extends TestCase
         $object = new \stdClass();
 
         // Act
-        $myObject = new MyObject($object);
+        $myObject = new ValueObject($object);
 
         // Assert
         self::assertEquals(new \stdClass(), $myObject->getValue());

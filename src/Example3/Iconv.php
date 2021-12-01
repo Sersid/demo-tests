@@ -21,7 +21,7 @@ class Iconv
         return self::convert(self::CP1251, self::UTF8, $value);
     }
 
-    private static function convert(string $inCharset, string $outCharset, $value)
+    public static function convert(string $inCharset, string $outCharset, $value)
     {
         if (is_array($value)) {
             foreach ($value as $key => $val) {

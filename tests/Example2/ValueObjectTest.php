@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Tests\Example2;
 
-use App\Example1\MyObject;
+use App\Example1\ValueObject;
 use PHPUnit\Framework\TestCase;
 
-class TestMyObject extends TestCase
+class ValueObjectTest extends TestCase
 {
     /**
      * @dataProvider valueDataProvider
@@ -14,7 +14,7 @@ class TestMyObject extends TestCase
     public function testGetValue($value): void
     {
         // Act
-        $myObject = new MyObject($value);
+        $myObject = new ValueObject($value);
 
         // Assert
         self::assertSame($value, $myObject->getValue());

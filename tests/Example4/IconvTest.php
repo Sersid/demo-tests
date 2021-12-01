@@ -7,8 +7,25 @@ use App\Example3\Iconv;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class TestIconv extends TestCase
+class IconvTest extends TestCase
 {
+    private const BAD_CHARSET = 'Windowsz-1251';
+
+    /**
+     * Типы данных, которые не нуждаются в конвертации
+     */
+    public function skippedDataProvider(): array
+    {
+        return [
+            [true, true],
+            [false, false],
+            [123456789, 123456789],
+            [123456789.123, 123456789.123],
+            [null, null],
+            [new stdClass(), new stdClass()],
+        ];
+    }
+
     /**
      * Типы данных, которые будут конвертированы
      */
@@ -44,21 +61,6 @@ class TestIconv extends TestCase
     }
 
     /**
-     * Типы данных, которые не нуждаются в конвертации
-     */
-    public function skippedDataProvider(): array
-    {
-        return [
-            [true, true],
-            [false, false],
-            [123456789, 123456789],
-            [123456789.123, 123456789.123],
-            [null, null],
-            [new stdClass(), new stdClass()],
-        ];
-    }
-
-    /**
      * @dataProvider skippedDataProvider
      * @dataProvider dataProvider
      */
@@ -78,5 +80,25 @@ class TestIconv extends TestCase
         $result = Iconv::toCp1251($value);
 
         static::assertEquals($expected, $result);
+    }
+
+    /**
+     * @dataProvider dataProvider
+     */
+    public function testInvalidInCharset($value): void
+    {
+        $result = Iconv::convert(self::BAD_CHARSET, Iconv::UTF8, $value);
+
+        static::assertEquals($value, $result);
+    }
+
+    /**
+     * @dataProvider dataProvider
+     */
+    public function testInvalidOutCharset($value): void
+    {
+        $result = Iconv::convert(Iconv::UTF8, self::BAD_CHARSET, $value);
+
+        static::assertEquals($value, $result);
     }
 }
