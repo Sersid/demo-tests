@@ -1,0 +1,11 @@
+FROM php:7.4-fpm
+
+RUN apt-get update && apt-get install -y wget git unzip  \
+    && apt-get install --yes --no-install-recommends libpq-dev \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+RUN wget https://getcomposer.org/installer -O - -q \
+    | php -- --install-dir=/bin --filename=composer --quiet --version=2.0.9
+
+WORKDIR /var/www
