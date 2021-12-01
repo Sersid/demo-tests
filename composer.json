@@ -4,7 +4,8 @@
   "minimum-stability": "stable",
   "license": "proprietary",
   "require": {
-    "php": "^7.4"
+    "php": "^7.4",
+    "ext-iconv": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5"
