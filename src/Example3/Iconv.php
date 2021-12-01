@@ -11,13 +11,6 @@ class Iconv
     public const UTF8 = 'utf-8';
     public const CP1251 = 'cp1251';
 
-    private static function convertString(string $inCharset, string $outCharset, string $value): string
-    {
-        $encodedValue = iconv($inCharset, $outCharset, $value);
-
-        return $encodedValue !== false ? $encodedValue : $value;
-    }
-
     public static function toCp1251($value)
     {
         return self::convert(self::UTF8, self::CP1251, $value);
@@ -28,7 +21,7 @@ class Iconv
         return self::convert(self::CP1251, self::UTF8, $value);
     }
 
-    public static function convert(string $inCharset, string $outCharset, $value)
+    private static function convert(string $inCharset, string $outCharset, $value)
     {
         if (is_array($value)) {
             foreach ($value as $key => $val) {
@@ -43,5 +36,12 @@ class Iconv
         }
 
         return $value;
+    }
+
+    private static function convertString(string $inCharset, string $outCharset, string $value): string
+    {
+        $encodedValue = iconv($inCharset, $outCharset, $value);
+
+        return $encodedValue !== false ? $encodedValue : $value;
     }
 }
