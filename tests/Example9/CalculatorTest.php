@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Example6;
+namespace Tests\Example9;
 
 use App\Example6\Calculator;
 use App\Example6\Ratio;
@@ -15,7 +15,9 @@ class CalculatorTest extends TestCase
     {
         parent::setUp();
 
-        $ratio = new Ratio(0.5);
+        $ratio = $this->createMock(Ratio::class);
+        $ratio->method('getValue')->willReturn(0.5);
+
         $this->calculator = new Calculator($ratio);
     }
 

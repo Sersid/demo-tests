@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Example6;
+namespace App\Example7;
 
 class Calculator
 {

@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Example6;
+namespace Tests\Example8;
 
-use App\Example6\Calculator;
-use App\Example6\Ratio;
+use App\Example8\Calculator;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
@@ -15,7 +14,7 @@ class CalculatorTest extends TestCase
     {
         parent::setUp();
 
-        $ratio = new Ratio(0.5);
+        $ratio = new RatioFixture();
         $this->calculator = new Calculator($ratio);
     }
 
