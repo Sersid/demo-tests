@@ -16,7 +16,9 @@ class CalculatorTest extends TestCase
         parent::setUp();
 
         $ratio = $this->createMock(Ratio::class);
-        $ratio->method('getValue')->willReturn(0.5);
+        $ratio->expects(self::once())
+            ->method('getValue')
+            ->willReturn(0.5);
 
         $this->calculator = new Calculator($ratio);
     }
